@@ -9,23 +9,37 @@ export class SoloPageObject extends BasePage {
     birthdayForHerLink: By = By.xpath('(//*[@id="birthday_menu_items"])//*[@class="category-menu-li "][2]')
 
     //('(//*[@class="gallery-categories__label"])[7]')
-    
-    //siign in input fields and buttons
+    //sign in link on evite home page
     signInLink: By = By.xpath('//*[@data-qa-id="topnav_signin"]')
-    emailField: By = By.xpath('//input[@id="login-email"]')
-    passwordField: By = By.xpath('//input[@id="login-password"]')
-    signInBtn: By = By.xpath('//button[@id="loginModal__submit"]')
-    signOutBtn: By = By.xpath('//*[@data-qa-id="topnav_signout"]')
+   
+    //siign in input fields and buttons on main Login Page
+    emailField1: By = By.xpath('//*[@id="id_email"]')
+    passwordField1: By = By.xpath('//*[@id="id_password"]')
+    signInBtn1: By = By.xpath('//*[@data-qa-id="signin-button"]')
+    signOutBtn: By = By.css('["signout_button"]') //xpath('//*[@id="signout_button"]') //$x('//*[@data-qa-id="topnav_signout"]')
     
-    //add to my favorites
-    heartBtn: By = By.xpath('(//i[@class="icon icon-heart"])[14]')
-    //$x('(//i[@class="icon icon-heart"])[14]')
+    //sign in input fields on secondary pages
+    emailField2: By = By.xpath('//input[@id="login-email"]')
+    passwordField2: By = By.xpath('//input[@id="login-password"]')
+    signInBtn2: By = By.xpath('//button[@id="loginModal__submit"]')
 
+    //add to my favorites
+    heartBtn: By = By.xpath('(//i[@class="icon icon-heart"])[14]') //$x('(//i[@class="icon icon-heart"])[14]')
     
+    createInvBtn: By = By.xpath('//*[@id="create_button"][1]') //$x('//*[@data-qa-id="create-event-cta"]')
+    itemSelect: By = By.xpath('(//*[@class="row-item template"])[7]')
+    eventTitle: By = By.css('[id="id_title"]')
+    eventType: By = By.xpath('//*[@data-qa-id="id_event_type"]')
+    eventDate: By = By.xpath('(//*[@data-qa-id="id_start-date"])[2]')
+    eventTime: By = By.xpath('(//*[@data-qa-id="id_start-time"])')
+
     //preview or save draft
-    previewBtn: By = By.id("button_preview")
-    saveDraftBtn: By = By.id("button_draft")
+    previewBtn: By = By.xpath('//*[@data-qa-id="action_bar__preview_button"]') //By.id("button_preview")
+    saveDraftBtn: By = By.xpath('//*[@data-qa-id="button-draft"]') //By.id("button_draft")
     backBtn: By = By.id("button_back")
+
+    //profile
+    profileBtn: By = By.xpath('//a[@href="https://www.evite.com/profile/edit"]') // By.xpath('(//*[@id="user_menu"])[1]') or By.xpath('(//*[@class="menu nav-link hidden"])//a[@href="https://www.evite.com/profile/edit"]')
 
     constructor() {
         super({url:"https://www.evite.com/"})
@@ -49,65 +63,59 @@ export class SoloPageObject extends BasePage {
     async clickSignInLink() {
         return this.click(this.signInLink)
     }
-    async loginEmail(searchTerm: string) {
-        return this.setInput(this.emailField, `${searchTerm}\n`)
+    async mainloginEmail(searchTerm: string) {
+        return this.setInput(this.emailField1, `${searchTerm}\n`)
     }
 
-    async loginPassword(searchTerm: string) {
-        return this.setInput(this.passwordField, `${searchTerm}\n`)
+    async mainloginPassword(searchTerm: string) {
+        return this.setInput(this.passwordField1, `${searchTerm}\n`)
     }
     
-    async clickSignInBtn(){
-        return this.click(this.signInBtn)
+    async clickMainSignInBtn(){
+        return this.click(this.signInBtn1)
+    }
+    async secloginEmail(searchTerm: string) {
+        return this.setInput(this.emailField2, `${searchTerm}\n`)
+    }
+
+    async secloginPassword(searchTerm: string) {
+        return this.setInput(this.passwordField2, `${searchTerm}\n`)
+    }
+    
+    async clickSecSignInBtn(){
+        return this.click(this.signInBtn2)
     }
     async clickSignOutBtn(){
         return this.click(this.signOutBtn)
     }
+    async clickCreateInvBtn(){
+        return this.click(this.createInvBtn)
+    }
+    async clickItemToSelect(){
+        return this.click(this.itemSelect)
+    }
+    async eventTitleInput(searchTerm: string) {
+        return this.setInput(this.eventTitle, `${searchTerm}\n`)
+    }
+    async eventTypeInput(searchTerm: string){
+        return this.setInput(this.eventType, `${searchTerm}\n`)
+    }
+    async eventDateInput(dateInput: Date){
+        return this.setInput(this.eventDate, `${dateInput}\n`)
+    }
+    async eventTimeInput(timeInput: Date){
+        return this.setInput(this.eventDate, `${timeInput}\n`)
+    }
+    async clickPreviewInv(){
+        return this.click(this.previewBtn)
+    }
+    async clickSaveDraft(){
+        return this.click(this.saveDraftBtn)
+    }
+    async clickBackBtn(){
+        return this.click(this.backBtn)
+    }
+   async clickProfile(){
+        return this.click(this.profileBtn)
+   }
 }
-    /*
-    async getResults() {
-        return this.getText(this.results)
-    }
-    async clickRegisterNewBtn() {
-        return this.click(this.registerNewAccountBtn)
-    }
-
-    async registerFirstName(searchTerm: string) {
-        return this.setInput(this.firstNameInput, `${searchTerm}\n`)
-    }
-
-    async registerLastName(searchTerm: string) {
-        return this.setInput(this.lastNameInput, `${searchTerm}\n`)
-    }
-
-    async registerEmail(searchTerm: string) {
-        return this.setInput(this.registerEmailInput, `${searchTerm}\n`)
-    }
-
-    async clickAccountType() {
-        return this.click(this.registerAccountType)
-    }
-
-    async registerPassword(searchTerm: string) {
-        return this.setInput(this.registerPasswordInput, `${searchTerm}\n`)
-    }
-
-    async registerVerifyPassword(searchTerm: string) {
-        return this.setInput(this.registerVerifyPasswordInput, `${searchTerm}\n`)
-    }
-
-    async clickRegisterBtn() {
-        return this.click(this.registerAccountBtn)
-    }
-
-    async findHeader() {
-        return this.getText(this.nameHeaderAccount)
-    }
-
-    async findErrorMessage() {
-        return this.getText(this.errorMessage)
-    }
-
-    async signOutfunc() {
-        return this.click(this.signOut)
-    }*/

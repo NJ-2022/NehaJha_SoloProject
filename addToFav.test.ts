@@ -1,7 +1,7 @@
 import { SoloPageObject } from './pageobject'
 const eviteTest = new SoloPageObject()
 
-test('To test if user is able to select a particular type of invitation', async () => {
+test('To test if user is able to select a particular type of invitation and add to favorites', async () => {
     await eviteTest.navigate() 
     //await eviteTest.clickSignInLink() //clicks on signin link
    //clicks on sign in button
@@ -14,10 +14,10 @@ test('To test if user is able to select a particular type of invitation', async 
     await eviteTest.driver.sleep(1000)
     await eviteTest.clickHeartBtn() // click on heart of 14th element on the page
     await eviteTest.driver.sleep(1000)
-    await eviteTest.loginEmail('nehajha.1987@gmail.com') // enter the email
-    await eviteTest.loginPassword('qwer@1234') //enter password
-    await eviteTest.clickSignInBtn()
-    //await eviteTest.driver.quit()
+    await eviteTest.secloginEmail('nehajha.1987@gmail.com') // enter the email
+    await eviteTest.secloginPassword('qwer@1234') //enter password
+    await eviteTest.clickSecSignInBtn()
+    await eviteTest.driver.sleep(2000)
 })
 
 
@@ -42,7 +42,4 @@ afterAll(async () => {
     await eviteTest.clickHeartBtn() // click on heart of 14th element on the page
       await eviteTest.driver.sleep(1000)
 })
-
-afterAll(async () => {
-    await eviteTest.driver.quit()
-})*/
+*/
