@@ -8,10 +8,6 @@ test('Test 1: login with valid credentials', async () => {
     await eviteTest.mainloginPassword('qwer@1234')
     await eviteTest.clickMainSignInBtn()
     await eviteTest.driver.sleep(5000)
-    // sign out functionality
-    await eviteTest.clickSignOutBtn()
-    await eviteTest.driver.sleep(1000);
-
 }) 
 
 afterAll(async () => {
