@@ -24,7 +24,7 @@ export class SoloPageObject extends BasePage {
     birthdayForHerLink: By = By.xpath('(//*[@id="birthday_menu_items"])//*[@class="category-menu-li "][2]')
 
     allInvLink: By = By.xpath('//*[@data-qa-id="mnav_invitations"]')
-    graduationLink: By = By.xpath('(//*[@class="category-menu-li "])[2]') // another ('(//*[@class="gallery-categories__label"])[7]')
+    invLink: By = By.xpath('(//*[@class="category-menu-li "])[2]') // another ('(//*[@class="gallery-categories__label"])[7]')
     
     //sign in link on evite home page
     signInLink: By = By.xpath('//*[@data-qa-id="topnav_signin"]')
@@ -52,6 +52,8 @@ export class SoloPageObject extends BasePage {
 
     //preview or save draft
     previewBtn: By = By.xpath('//*[@data-qa-id="action_bar__preview_button"]') //By.id("button_preview")
+    previewPopUp: By = By.xpath('//*[@data-qa-id="preview_modal__preview_button"]')
+    closePreview: By = By.xpath('//a[@class="secondary-button button-secondary-inverse close_window"]') //('//*[@data-qa-id="button-close"]')
     saveDraftBtn: By = By.xpath('//*[@data-qa-id="button-draft"]') //By.id("button_draft")
     backBtn: By = By.id("button_back")
 
@@ -82,8 +84,8 @@ export class SoloPageObject extends BasePage {
         return this.click(this.allInvLink)
     }
 
-    async clickGraduation(){
-        return this.click(this.graduationLink)
+    async clickInvitation(){
+        return this.click(this.invLink)
     }
     async clickHeartBtn(){
         return this.click(this.heartBtn)
@@ -157,7 +159,7 @@ export class SoloPageObject extends BasePage {
     async eventTitleInput(inputPar: string) {
         return this.setInput(this.eventTitle, `${inputPar}\n`)
     }
-    async eventTypeInput(){
+    async clickeventTypeInput(){
         //(searchTerm: string){ return this.setInput(this.eventType, `${searchTerm}\n`)
         return this.click(this.eventType)
     }
@@ -172,6 +174,12 @@ export class SoloPageObject extends BasePage {
     }
     async clickPreviewInv(){
         return this.click(this.previewBtn)
+    }
+    async clickPreviewBtn(){
+        return this.click(this.previewPopUp)
+    }
+    async clickClosePreview(){
+        return this.click(this.closePreview)
     }
     async clickSaveDraft(){
         return this.click(this.saveDraftBtn)
